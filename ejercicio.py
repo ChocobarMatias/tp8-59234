@@ -74,7 +74,7 @@ if uploaded_file:
             st.pyplot(fig)
 
 ## ATENCION: Debe colocar la direccion en la que ha sido publicada la aplicacion en la siguiente linea\
-# url = 'https://tp8-59234.streamlit.app/'
+# url = 'https://tp8-lab-59234.streamlit.app/'
 
 def mostrar_informacion_alumno():
     with st.container(border=True):
