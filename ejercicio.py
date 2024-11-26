@@ -3,14 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def Venta_Graficar(info_producto, producto):
-    ventas_producto = agrupar_ventas(info_producto)
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(range(len(ventas_producto)), ventas_producto['Unidades_vendidas'], label=producto)
-    agregar_tendencia(ax, ventas_producto)
-    configurar_grafico(ax, ventas_producto)
-    return fig
-
 def agrupar_ventas(info_producto):
     return info_producto.groupby(['Año', 'Mes'])['Unidades_vendidas'].sum().reset_index()
 
@@ -38,6 +30,14 @@ def calcular_precio_promedio(info_producto):
     precio_promedio_anual = info_producto.groupby('Año')['Precio_promedio'].mean()
     variacion_precio_promedio_anual = precio_promedio_anual.pct_change().mean() * 100
     return precio_promedio, variacion_precio_promedio_anual
+
+def Venta_Graficar(info_producto, producto):
+    ventas_producto = agrupar_ventas(info_producto)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(range(len(ventas_producto)), ventas_producto['Unidades_vendidas'], label=producto)
+    agregar_tendencia(ax, ventas_producto)
+    configurar_grafico(ax, ventas_producto)
+    return fig
 
 def calcular_margen_promedio(info_producto):
     info_producto['Ganancia'] = info_producto['Ingreso_total'] - info_producto['Costo_total']
